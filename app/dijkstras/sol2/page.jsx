@@ -44,6 +44,7 @@ export default function Home() {
   const [points, setPoints] = useState([]);
   const [lines, setLines] = useState([]);
 
+  const [errorSolving, setErrorSolving] = useState(false);
   const [finishPointIndex, setFinishPointIndex] = useState(-1);
   const [startPointIndex, setStartPointIndex] = useState(-1);
 
@@ -194,11 +195,17 @@ export default function Home() {
       const nextIndex = arrayPoints[i].prev;
       arrayPoints[i].isPath = true;
 
-      arrayLines.find(
+      const line = arrayLines.find(
         (l) =>
           (l.p1i == i && l.p2i == nextIndex) ||
           (l.p2i == i && l.p1i == nextIndex),
-      ).isPath = true;
+      );
+      // console.log(line);
+      if (!line) {
+        setErrorSolving(true);
+        return;
+      }
+      line.isPath = true;
 
       i = nextIndex;
     }
@@ -220,6 +227,7 @@ export default function Home() {
         }),
       ]);
     // setLines([]);
+    setErrorSolving(false);
     calculateStartFinishPoint();
     generateLines().then((res) => setLines([...res]));
   }
@@ -248,7 +256,12 @@ export default function Home() {
         {startPointIndex != -1 && (
           <button
             onClick={(e) => solveWithDijkstra()}
-            className="relative px-4 py-2 text-center text-sm text-zinc-300/50 no-underline transition-transform delay-300 duration-300 ease-in hover:text-zinc-300 lg:text-base"
+            className={
+              "relative px-4 py-2 text-center text-sm no-underline transition-transform delay-300 duration-300 ease-in lg:text-base" +
+              (errorSolving
+                ? " text-red-600/70 hover:text-red-600"
+                : " text-zinc-300/50 hover:text-zinc-300")
+            }
           >
             <span className="flex animate-fade-up gap-1 text-base delay-100 duration-700">
               <span className="flex gap-1 text-base">
