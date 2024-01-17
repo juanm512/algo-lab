@@ -9,10 +9,14 @@ export default function Tooltip({
   children,
   content,
   fullWidth,
+  side,
+  sideOffset,
 }: {
   children: ReactNode;
   content: ReactNode | string;
   fullWidth?: boolean;
+  side?: "top" | "right" | "bottom" | "left";
+  sideOffset?: number;
 }) {
   const { isMobile } = useMediaQuery();
 
@@ -30,6 +34,7 @@ export default function Tooltip({
         <Drawer.Overlay className="fixed inset-0 z-40 bg-gray-100 bg-opacity-10 backdrop-blur" />
         <Drawer.Portal>
           <Drawer.Content className="fixed bottom-0 left-0 right-0 z-50 mt-24 rounded-t-[10px] border-t border-gray-200 bg-white">
+            {" "}
             <div className="sticky top-0 z-20 flex w-full items-center justify-center rounded-t-[10px] bg-inherit">
               <div className="my-3 h-1 w-12 rounded-full bg-gray-300" />
             </div>
@@ -59,12 +64,12 @@ export default function Tooltip({
             prevents you from selecting the contents of a tooltip when used inside a modal 
         */}
         <TooltipPrimitive.Content
-          sideOffset={8}
-          side="top"
-          className="z-[99] hidden animate-slide-up-fade items-center overflow-hidden rounded-md border border-gray-200 bg-white shadow-md md:block"
+          sideOffset={sideOffset || 8}
+          side={side || "top"}
+          className="z-[99] hidden animate-fade-up items-center overflow-hidden rounded-md border border-zinc-700 bg-zinc-900/50 shadow-md backdrop-blur-sm md:block"
         >
           {typeof content === "string" ? (
-            <div className="block max-w-xs px-4 py-2 text-center text-sm text-gray-700">
+            <div className="block max-w-xs px-4 py-2 text-center text-sm text-zinc-400">
               {content}
             </div>
           ) : (
