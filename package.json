@@ -22,6 +22,7 @@
     "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-toast": "^1.1.5",
     "@radix-ui/react-tooltip": "^1.0.7",
+    "@react-spectrum/color": "3.0.0-beta.30",
     "@types/node": "18.11.18",
     "@types/react": "18.2.24",
     "@types/react-dom": "18.2.8",
