@@ -35,6 +35,6 @@
     ".next/types/**/*.ts",
     "app/dijkstras/random-graph/page.jsx",
     "app/dijkstras/descripcion/page.jsx"
-  ],
+, "components/layout/navbar.jsx"  ],
   "exclude": ["node_modules"]
 }

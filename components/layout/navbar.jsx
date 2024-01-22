@@ -3,12 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
-// import { useSignInModal } from "./sign-in-modal";
-import UserDropdown from "./user-dropdown";
-// import { Session } from "next-auth";
+
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 const navItems = [
   {
