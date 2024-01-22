@@ -1,25 +1,21 @@
 "use client";
-import * as Slider from "@radix-ui/react-slider";
-import * as Label from "@radix-ui/react-label";
-import { parseColor } from "@react-stately/color";
+
+import { FileCog } from "lucide-react";
+
+import NodesSettingsCollapsible from "@/app/dijkstras/descripcion/nodes-settings-collapsible";
+import NodeStyleVisualizer from "@/app/dijkstras/descripcion/node-style-visualizer";
+
+import EdgesSettingsCollapsible from "@/app/dijkstras/descripcion/edges-settings-collapsible";
+import EdgeStyleVisualizer from "@/app/dijkstras/descripcion/edge-style-visualizer";
 
 import { useUiStore, useBasicConfigStore } from "@/lib/store";
 
-export function ConfigMenu() {
+export function ConfigMenu({ graphType }) {
   const settingsMenuOpen = useUiStore((state) => state.settingsMenuOpen);
   const toggleSettingsMenuOpen = useUiStore(
     (state) => state.toggleSettingsMenuOpen,
   );
 
-  const nodesStyle = useBasicConfigStore((state) => state.nodesStyle);
-  const updateNodesStyle = useBasicConfigStore(
-    (state) => state.updateNodesStyle,
-  );
-
-  const edgesStyle = useBasicConfigStore((state) => state.edgesStyle);
-  const updateEdgesStyle = useBasicConfigStore(
-    (state) => state.updateEdgesStyle,
-  );
   return (
     <div
       className={
@@ -29,20 +25,7 @@ export function ConfigMenu() {
       role="dialog"
       aria-modal="true"
     >
-      {/* <!--
-      Background backdrop, show/hide based on slide-over state.
-  
-      Entering: "ease-in-out duration-500"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "ease-in-out duration-500"
-        From: "opacity-100"
-        To: "opacity-0"
-    --> */}
-      <div
-        onClick={() => console.log("bg click")}
-        className="absolute inset-0 rounded-lg bg-zinc-700/20 backdrop-blur-sm transition-opacity"
-      ></div>
+      <div className="absolute inset-0 rounded-lg bg-zinc-700/20 backdrop-blur-[1.5px] transition-opacity"></div>
 
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
@@ -58,16 +41,6 @@ export function ConfigMenu() {
               To: "translate-x-full"
           --> */}
             <div className="pointer-events-auto relative w-screen max-w-md">
-              {/* <!--
-              Close button, show/hide based on slide-over state.
-  
-              Entering: "ease-in-out duration-500"
-                From: "opacity-0"
-                To: "opacity-100"
-              Leaving: "ease-in-out duration-500"
-                From: "opacity-100"
-                To: "opacity-0"
-            --> */}
               <button
                 onClick={() => toggleSettingsMenuOpen()}
                 type="button"
@@ -92,317 +65,236 @@ export function ConfigMenu() {
               </button>
 
               <div className="flex h-full flex-col overflow-y-scroll rounded-r-lg border-l border-zinc-700 bg-zinc-900/20 py-6 shadow-xl backdrop-blur-xl">
+                {/*  */}
+                {/* <div className="relative mb-2 border-b border-zinc-300/50 py-6 ">
+                  <input
+                    id="setUp"
+                    type="radio"
+                    className="peer/setUp hidden"
+                    name="collapsible"
+                  />
+                  <label
+                    htmlFor="setUp"
+                    className="relative flex h-fit cursor-pointer flex-row"
+                  >
+                    <div className="flex basis-9/12 flex-col justify-evenly">
+                      <h2 className="pl-5 text-base font-semibold leading-5 text-zinc-200">
+                        Generation settings
+                      </h2>
+                      <p className="mt-1 pl-5 text-sm leading-4 text-zinc-300">
+                        These modifiers change the generation params for the
+                        graph and edges
+                      </p>
+                    </div>
+                    <div className="flex aspect-square h-8 w-8 basis-3/12 items-center justify-center pr-5 text-center font-medium text-zinc-200">
+                      <FileCog size={32} />
+                    </div>
+                  </label>
+
+                  <div className="mx-auto mb-2 mt-3 hidden h-0.5 w-11/12 bg-zinc-500/80 peer-checked/setUp:block" />
+
+                  <div className="hidden flex-col items-center peer-checked/setUp:block">
+                    
+                  </div>
+                </div> */}
+                {/*  */}
+                {/* COMMON EDGES STYLE */}
                 <div className="relative mb-2 border-b border-zinc-300/50 py-6 ">
                   <input
-                    id="c1"
+                    id="edgeCOMMON"
                     type="radio"
-                    className="peer/c1 hidden"
+                    className="peer/edgeCOMMON hidden"
                     name="collapsible"
                   />
                   <label
-                    htmlFor="c1"
+                    htmlFor="edgeCOMMON"
                     className="relative flex h-fit cursor-pointer flex-row"
                   >
                     <div className="flex basis-9/12 flex-col justify-evenly">
-                      <h2 className="pl-5 text-base font-semibold leading-5 text-zinc-200 peer-checked/c1:text-sky-500">
-                        Edges style
+                      <h2 className="pl-5 text-base font-semibold leading-5 text-zinc-200">
+                        Common edges appearance
                       </h2>
                       <p className="mt-1 pl-5 text-sm leading-4 text-zinc-300">
-                        This information will be displayed publicly so be
-                        careful what you share.
+                        These modifiers will help you change the style of the
+                        edges
                       </p>
                     </div>
-                    <svg
-                      className="h-full w-full basis-3/12 pr-5"
-                      viewBox={"0 0 100 100"}
-                    >
-                      <line
-                        x1={10}
-                        y1={10}
-                        x2={90}
-                        y2={90}
-                        stroke={edgesStyle.strokeColor}
-                        strokeWidth={edgesStyle.strokeWidth}
-                      />
-                      <circle
-                        cx={10}
-                        cy={10}
-                        fill={nodesStyle.fillColor}
-                        r={nodesStyle.radius}
-                        strokeWidth={nodesStyle.strokeWidth}
-                        stroke={nodesStyle.strokeColor}
-                      />
-
-                      <circle
-                        cx={90}
-                        cy={90}
-                        fill={nodesStyle.fillColor}
-                        r={nodesStyle.radius}
-                        strokeWidth={nodesStyle.strokeWidth}
-                        stroke={nodesStyle.strokeColor}
-                      />
-                    </svg>
+                    <EdgeStyleVisualizer edgeType="COMMON" />
                   </label>
 
-                  <div className="mx-auto mb-2 mt-3 hidden h-0.5 w-11/12 bg-zinc-500/80 peer-checked/c1:block" />
+                  <div className="mx-auto mb-2 mt-3 hidden h-0.5 w-11/12 bg-zinc-500/80 peer-checked/edgeCOMMON:block" />
 
-                  <div className="hidden flex-col items-center peer-checked/c1:block">
-                    {/*  */}
-                    <div className="flex w-full flex-col px-8 py-4">
-                      <div className="flex flex-row items-center justify-between">
-                        <Label.Root
-                          className="text-md font-normal leading-[35px] text-zinc-300"
-                          htmlFor="edge-strokeWidth"
-                        >
-                          Width
-                        </Label.Root>
-                        <input
-                          className="selection:color-white inline-flex h-7 w-fit appearance-none items-center justify-center rounded-md bg-zinc-900 text-center text-[12px] leading-none text-zinc-300 shadow-[0_0_0_1px] shadow-zinc-800 outline-none selection:bg-zinc-900 focus:shadow-[0_0_0_2px_black]"
-                          type="number"
-                          min={0.1}
-                          max={nodesStyle.radius}
-                          step={nodesStyle.radius / 50}
-                          id="edge-strokeWidth"
-                          // defaultValue={edgesStyle.radius}
-                          value={edgesStyle.strokeWidth}
-                          onChange={(e) =>
-                            updateEdgesStyle({
-                              ...edgesStyle,
-                              strokeWidth: e.target.value,
-                            })
-                          }
-                        />
-                      </div>
-                      <Slider.Root
-                        className="relative flex h-5 w-full touch-none select-none items-center"
-                        // defaultValue={[edgesStyle.radius]}
-                        value={[edgesStyle.strokeWidth]}
-                        min={0.1}
-                        max={nodesStyle.radius}
-                        step={nodesStyle.radius / 50}
-                        onValueChange={(value) =>
-                          updateEdgesStyle({
-                            ...edgesStyle,
-                            strokeWidth: value[0],
-                          })
-                        }
-                      >
-                        <Slider.Track className="relative h-1 grow rounded-full ">
-                          <Slider.Range className="absolute h-full w-full rounded-full bg-zinc-700" />
-                        </Slider.Track>
-                        <Slider.Thumb
-                          className="block h-4 w-4 rounded-[10px] bg-zinc-500 shadow-[0_1x_7px] shadow-zinc-600 hover:bg-zinc-400 focus:bg-zinc-400 focus:shadow-[0_0_0_4px] focus:shadow-zinc-700 focus:outline-none"
-                          aria-label="edge-strokeWidth"
-                        />
-                      </Slider.Root>
-                    </div>
-                    {/*  */}
-                    <div className="flex w-full flex-col px-8 py-4">
-                      <div className="flex flex-row items-center justify-between">
-                        <label
-                          htmlFor="edge-strokeColor"
-                          className="text-md basis-10/12 font-normal text-zinc-300"
-                        >
-                          Fill color
-                        </label>
-                        <input
-                          id="edge-strokeColor"
-                          type="color"
-                          value={edgesStyle.strokeColor}
-                          onChange={(e) =>
-                            updateEdgesStyle({
-                              ...edgesStyle,
-                              strokeColor: e.target.value,
-                            })
-                          }
-                          className="w-full basis-2/12 rounded-lg border-2 border-zinc-700 shadow-[0_0_0_1px] shadow-zinc-800"
-                        />
-                      </div>
-                    </div>
-                    {/*  */}
+                  <div className="hidden flex-col items-center peer-checked/edgeCOMMON:block">
+                    <EdgesSettingsCollapsible edgeType="COMMON" />
                   </div>
                 </div>
-
-                {/*  */}
-                <div className="relative mb-2 border-b border-zinc-300/50 py-6">
+                {/* SOLUTION EDGES STYLE */}
+                <div className="relative mb-2 border-b border-zinc-300/50 py-6 ">
                   <input
-                    id="c2"
+                    id="edgeSOLUTION"
                     type="radio"
-                    className="peer/c2 hidden"
+                    className="peer/edgeSOLUTION hidden"
                     name="collapsible"
                   />
                   <label
-                    htmlFor="c2"
+                    htmlFor="edgeSOLUTION"
                     className="relative flex h-fit cursor-pointer flex-row"
                   >
                     <div className="flex basis-9/12 flex-col justify-evenly">
-                      <h2 className="pl-5 text-base font-semibold leading-5 text-zinc-200 peer-checked/c2:text-sky-500">
-                        Nodes style
+                      <h2 className="pl-5 text-base font-semibold leading-5 text-zinc-200">
+                        Solution edges style
                       </h2>
                       <p className="mt-1 pl-5 text-sm leading-4 text-zinc-300">
-                        This information will be displayed publicly so be
-                        careful what you share.
+                        These modifiers will help you see clearly the edges that
+                        solve the path
                       </p>
                     </div>
-                    <svg
-                      className="h-full w-full basis-3/12 pr-5"
-                      viewBox={"0 0 50 50"}
-                    >
-                      <circle
-                        cx={25}
-                        cy={25}
-                        fill={nodesStyle.fillColor}
-                        r={nodesStyle.radius}
-                        strokeWidth={nodesStyle.strokeWidth}
-                        stroke={nodesStyle.strokeColor}
-                      />
-                    </svg>
+                    <EdgeStyleVisualizer edgeType="SOLUTION" />
                   </label>
 
-                  <div className="mx-auto mb-2 mt-3 hidden h-0.5 w-11/12 bg-zinc-500/80 peer-checked/c2:block" />
+                  <div className="mx-auto mb-2 mt-3 hidden h-0.5 w-11/12 bg-zinc-500/80 peer-checked/edgeSOLUTION:block" />
 
-                  <div className="hidden flex-col items-center peer-checked/c2:block">
-                    {/*  */}
-                    <div className="flex w-full flex-col px-8 py-4">
-                      <div className="flex flex-row items-center justify-between">
-                        <Label.Root
-                          className="text-md font-normal leading-[35px] text-zinc-300"
-                          htmlFor="radius"
-                        >
-                          Radius
-                        </Label.Root>
-                        <input
-                          className="selection:color-white inline-flex h-7 w-fit appearance-none items-center justify-center rounded-md bg-zinc-900 text-center text-[12px] leading-none text-zinc-300 shadow-[0_0_0_1px] shadow-zinc-800 outline-none selection:bg-zinc-900 focus:shadow-[0_0_0_2px_black]"
-                          type="number"
-                          min={2}
-                          max={20}
-                          step={1}
-                          id="radius"
-                          // defaultValue={nodesStyle.radius}
-                          value={nodesStyle.radius}
-                          onChange={(e) =>
-                            updateNodesStyle({
-                              ...nodesStyle,
-                              radius: e.target.value,
-                            })
-                          }
-                        />
-                      </div>
-                      <Slider.Root
-                        className="relative flex h-5 w-full touch-none select-none items-center"
-                        // defaultValue={[nodesStyle.radius]}
-                        value={[nodesStyle.radius]}
-                        max={20}
-                        min={2}
-                        step={1}
-                        onValueChange={(value) =>
-                          updateNodesStyle({ ...nodesStyle, radius: value[0] })
-                        }
-                      >
-                        <Slider.Track className="relative h-1 grow rounded-full ">
-                          <Slider.Range className="absolute h-full w-full rounded-full bg-zinc-700" />
-                        </Slider.Track>
-                        <Slider.Thumb
-                          className="block h-4 w-4 rounded-[10px] bg-zinc-500 shadow-[0_1x_7px] shadow-zinc-600 hover:bg-zinc-400 focus:bg-zinc-400 focus:shadow-[0_0_0_4px] focus:shadow-zinc-700 focus:outline-none"
-                          aria-label="radius"
-                        />
-                      </Slider.Root>
+                  <div className="hidden flex-col items-center peer-checked/edgeSOLUTION:block">
+                    <EdgesSettingsCollapsible edgeType="SOLUTION" />
+                  </div>
+                </div>
+                {/* REMOVED EDGES STYLE */}
+                <div className="relative mb-2 border-b border-zinc-300/50 py-6 ">
+                  <input
+                    id="edgeREMOVED"
+                    type="radio"
+                    className="peer/edgeREMOVED hidden"
+                    name="collapsible"
+                  />
+                  <label
+                    htmlFor="edgeREMOVED"
+                    className="relative flex h-fit cursor-pointer flex-row"
+                  >
+                    <div className="flex basis-9/12 flex-col justify-evenly">
+                      <h2 className="pl-5 text-base font-semibold leading-5 text-zinc-200">
+                        Removed edges style
+                      </h2>
+                      <p className="mt-1 pl-5 text-sm leading-4 text-zinc-300">
+                        These modifiers will help you see clearly the removed
+                        edges, when these exist
+                      </p>
                     </div>
-                    {/*  */}
-                    <div className="flex w-full flex-col px-8 py-4">
-                      <div className="flex flex-row items-center justify-between">
-                        <Label.Root
-                          className="text-md font-normal leading-[35px] text-zinc-300"
-                          htmlFor="strokeWidth"
-                        >
-                          Border width
-                        </Label.Root>
-                        <input
-                          className="selection:color-white inline-flex h-7 w-fit appearance-none items-center justify-center rounded-md bg-zinc-900 text-center text-[12px] leading-none text-zinc-300 shadow-[0_0_0_1px] shadow-zinc-800 outline-none selection:bg-zinc-900 focus:shadow-[0_0_0_2px_black]"
-                          type="number"
-                          min={0}
-                          max={10}
-                          step={0.25}
-                          id="strokeWidth"
-                          value={nodesStyle.strokeWidth}
-                          onChange={(e) =>
-                            updateNodesStyle({
-                              ...nodesStyle,
-                              strokeWidth: e.target.value,
-                            })
-                          }
-                        />
-                      </div>
-                      <Slider.Root
-                        className="relative flex h-5 w-full touch-none select-none items-center"
-                        value={[nodesStyle.strokeWidth]}
-                        min={0}
-                        max={10}
-                        step={0.25}
-                        onValueChange={(value) =>
-                          updateNodesStyle({
-                            ...nodesStyle,
-                            strokeWidth: value[0],
-                          })
-                        }
-                      >
-                        <Slider.Track className="bg-blackA7 relative h-1 grow rounded-full">
-                          <Slider.Range className="absolute h-full w-full rounded-full bg-zinc-700" />
-                        </Slider.Track>
-                        <Slider.Thumb
-                          className="block h-4 w-4 rounded-[10px] bg-zinc-500 shadow-[0_1x_7px] shadow-zinc-600 hover:bg-zinc-400 focus:bg-zinc-400 focus:shadow-[0_0_0_4px] focus:shadow-zinc-700 focus:outline-none"
-                          aria-label="strokeWidth"
-                        />
-                      </Slider.Root>
-                    </div>
-                    {/*  */}
-                    <div className="flex w-full flex-col px-8 py-4">
-                      <div className="flex flex-row items-center justify-between">
-                        <label
-                          htmlFor="fillColor"
-                          className="text-md basis-10/12 font-normal text-zinc-300"
-                        >
-                          Fill color
-                        </label>
-                        <input
-                          id="fillColor"
-                          type="color"
-                          value={nodesStyle.fillColor}
-                          onChange={(e) =>
-                            updateNodesStyle({
-                              ...nodesStyle,
-                              fillColor: e.target.value,
-                            })
-                          }
-                          className="w-full basis-2/12 rounded-lg border-2 border-zinc-700 shadow-[0_0_0_1px] shadow-zinc-800"
-                        />
-                      </div>
-                    </div>
+                    <EdgeStyleVisualizer edgeType="REMOVED" />
+                  </label>
 
-                    {/*  */}
-                    <div className="flex w-full flex-col px-8 py-4">
-                      <div className="flex flex-row items-center justify-between">
-                        <label
-                          htmlFor="strokeColor"
-                          className="text-md basis-10/12 font-normal text-zinc-300"
-                        >
-                          Border color
-                        </label>
-                        <input
-                          id="strokeColor"
-                          type="color"
-                          value={nodesStyle.strokeColor}
-                          onChange={(e) =>
-                            updateNodesStyle({
-                              ...nodesStyle,
-                              strokeColor: e.target.value,
-                            })
-                          }
-                          className="w-full basis-2/12 rounded-lg border-2 border-zinc-700 shadow-[0_0_0_1px] shadow-zinc-800"
-                        />
-                      </div>
+                  <div className="mx-auto mb-2 mt-3 hidden h-0.5 w-11/12 bg-zinc-500/80 peer-checked/edgeREMOVED:block" />
+
+                  <div className="hidden flex-col items-center peer-checked/edgeREMOVED:block">
+                    <EdgesSettingsCollapsible edgeType="REMOVED" />
+                  </div>
+                </div>
+                {/*  */}
+
+                {/* COMMON NODES STYLE EDIT */}
+                <div className="relative mb-2 border-b border-zinc-300/50 py-6">
+                  <input
+                    id={`nodeCOMMON`}
+                    type="radio"
+                    className={`peer/nodeCOMMON hidden`}
+                    name="collapsible"
+                  />
+                  <label
+                    htmlFor={`nodeCOMMON`}
+                    className="relative flex h-fit cursor-pointer flex-row"
+                  >
+                    <div className="flex basis-9/12 flex-col justify-evenly">
+                      <h2
+                        className={`pl-5 text-base font-semibold leading-5 text-zinc-200`}
+                      >
+                        Common nodes style
+                      </h2>
+                      <p className="mt-1 pl-5 text-sm leading-4 text-zinc-300">
+                        Edit the render style of the common nodes as you like.
+                      </p>
                     </div>
-                    {/*  */}
+                    <NodeStyleVisualizer nodeType="COMMON" />
+                  </label>
+
+                  <div
+                    className={`mx-auto mb-2 mt-3 hidden h-0.5 w-11/12 bg-zinc-500/80 peer-checked/nodeCOMMON:flex`}
+                  />
+
+                  <div
+                    className={`hidden flex-col items-center peer-checked/nodeCOMMON:flex`}
+                  >
+                    <NodesSettingsCollapsible nodeType="COMMON" />
+                  </div>
+                </div>
+                {/* START NODES STYLE EDIT */}
+                <div className="relative mb-2 border-b border-zinc-300/50 py-6">
+                  <input
+                    id={`nodeSTART`}
+                    type="radio"
+                    className={`peer/nodeSTART hidden`}
+                    name="collapsible"
+                  />
+                  <label
+                    htmlFor={`nodeSTART`}
+                    className="relative flex h-fit cursor-pointer flex-row"
+                  >
+                    <div className="flex basis-9/12 flex-col justify-evenly">
+                      <h2
+                        className={`pl-5 text-base font-semibold leading-5 text-zinc-200`}
+                      >
+                        Start node style
+                      </h2>
+                      <p className="mt-1 pl-5 text-sm leading-4 text-zinc-300">
+                        Edit the render style of the start node. This node mark
+                        the beginning of the path
+                      </p>
+                    </div>
+                    <NodeStyleVisualizer nodeType="START" />
+                  </label>
+
+                  <div
+                    className={`mx-auto mb-2 mt-3 hidden h-0.5 w-11/12 bg-zinc-500/80 peer-checked/nodeSTART:flex`}
+                  />
+
+                  <div
+                    className={`hidden flex-col items-center peer-checked/nodeSTART:flex`}
+                  >
+                    <NodesSettingsCollapsible nodeType="START" />
+                  </div>
+                </div>
+                {/* FINISH NODES STYLE EDIT */}
+                <div className="relative mb-2 border-b border-zinc-300/50 py-6">
+                  <input
+                    id={`nodeFINISH`}
+                    type="radio"
+                    className={`peer/nodeFINISH hidden`}
+                    name="collapsible"
+                  />
+                  <label
+                    htmlFor={`nodeFINISH`}
+                    className="relative flex h-fit cursor-pointer flex-row"
+                  >
+                    <div className="flex basis-9/12 flex-col justify-evenly">
+                      <h2
+                        className={`pl-5 text-base font-semibold leading-5 text-zinc-200`}
+                      >
+                        Finish node style
+                      </h2>
+                      <p className="mt-1 pl-5 text-sm leading-4 text-zinc-300">
+                        Edit the style displayed of the finish node. This node
+                        mark the end of the path
+                      </p>
+                    </div>
+                    <NodeStyleVisualizer nodeType="FINISH" />
+                  </label>
+
+                  <div
+                    className={`mx-auto mb-2 mt-3 hidden h-0.5 w-11/12 bg-zinc-500/80 peer-checked/nodeFINISH:flex`}
+                  />
+
+                  <div
+                    className={`hidden flex-col items-center peer-checked/nodeFINISH:flex`}
+                  >
+                    <NodesSettingsCollapsible nodeType="FINISH" />
                   </div>
                 </div>
                 {/*  */}

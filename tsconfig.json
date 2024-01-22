@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/dijkstras/sol1/page.jsx",
+    "app/dijkstras/random-graph/page.jsx",
     "app/dijkstras/descripcion/page.jsx"
   ],
   "exclude": ["node_modules"]

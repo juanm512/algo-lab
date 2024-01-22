@@ -31,9 +31,10 @@ const navItems = [
 
 const subNavItems = {
   "/dijkstras": [
-    { path: "/descripcion", name: "Descripcion" },
-    { path: "/sol1", name: "Solucion puntos aleatorios" },
-    { path: "/sol2", name: "Solucion puntos cuadricula" },
+    { path: "/descripcion", name: "Description" },
+    { path: "/random-graph", name: "Random graph" },
+    { path: "/grid-graph", name: "Grid graph" },
+    { path: "/laberint-graph", name: "Laberint graph (DFS)" },
   ],
 
   "/astar": [
