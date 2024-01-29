@@ -3,12 +3,12 @@ import { useEffect } from "react";
 
 import { useUiStore, useDataStore, useBasicConfigStore } from "@/lib/store";
 
-import { SideBarButtons } from "@/app/dijkstras/descripcion/sideBarButtons";
-import { ConfigMenu } from "@/app/dijkstras/descripcion/configMenu";
-import Solution from "@/app/dijkstras/descripcion/solution";
-import Edges from "@/app/dijkstras/descripcion/edges";
-import GraphNodes from "@/app/dijkstras/descripcion/graph";
-// import Measure from "@/app/dijkstras/descripcion/measure.client";
+import { SideBarButtons } from "@/app/dijkstras/components/sideBarButtons";
+import { ConfigMenu } from "@/app/dijkstras/components/configMenu";
+import Solution from "@/app/dijkstras/components/solution";
+import Edges from "@/app/dijkstras/components/edges";
+import GraphNodes from "@/app/dijkstras/components/graph";
+// import Measure from "@/app/dijkstras/components/measure.client";
 
 export default function Home() {
   const radius = useUiStore((state) => state.nodesStyle.radius);

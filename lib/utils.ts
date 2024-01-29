@@ -75,7 +75,7 @@ export const applyMargin = (value: number, margin: number, max: number) =>
     ? max - margin
     : value;
 export function calcDistance(x1: number, x2: number, y1: number, y2: number) {
-  return Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2);
+  return Math.floor(Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));
 }
 export const calcDirection = (a: number, b: number) => (a > b ? -1 : 1);
 export function calcPosOnCircle(

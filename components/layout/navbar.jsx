@@ -28,7 +28,6 @@ const navItems = [
 
 const subNavItems = {
   "/dijkstras": [
-    { path: "/descripcion", name: "Description" },
     { path: "/random-graph", name: "Random graph" },
     { path: "/grid-graph", name: "Grid graph" },
     { path: "/laberint-graph", name: "Laberint graph (DFS)" },
@@ -102,7 +101,7 @@ export default function NavBar() {
                     ? "bg-zinc-500/50 p-1 text-zinc-300"
                     : "m-1 text-zinc-300/50 hover:bg-zinc-500/20 hover:text-zinc-300/90"
                 }`}
-                href={item.path + "/descripcion"}
+                href={item.path }
               >
                 <span>{item.name}</span>
               </Link>

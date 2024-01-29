@@ -2,11 +2,11 @@
 
 import { FileCog } from "lucide-react";
 
-import NodesSettingsCollapsible from "@/app/dijkstras/descripcion/nodes-settings-collapsible";
-import NodeStyleVisualizer from "@/app/dijkstras/descripcion/node-style-visualizer";
+import NodesSettingsCollapsible from "@/app/dijkstras/components/nodes-settings-collapsible";
+import NodeStyleVisualizer from "@/app/dijkstras/components/node-style-visualizer";
 
-import EdgesSettingsCollapsible from "@/app/dijkstras/descripcion/edges-settings-collapsible";
-import EdgeStyleVisualizer from "@/app/dijkstras/descripcion/edge-style-visualizer";
+import EdgesSettingsCollapsible from "@/app/dijkstras/components/edges-settings-collapsible";
+import EdgeStyleVisualizer from "@/app/dijkstras/components/edge-style-visualizer";
 
 import { useUiStore, useBasicConfigStore } from "@/lib/store";
 

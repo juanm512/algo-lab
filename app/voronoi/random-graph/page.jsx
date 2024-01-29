@@ -5,8 +5,7 @@ import { useUiStore, useDataStore, useBasicConfigStore } from "@/lib/store";
 
 import { SideBarButtons } from "@/app/dijkstras/components/sideBarButtons";
 import { ConfigMenu } from "@/app/dijkstras/components/configMenu";
-import Solution from "@/app/dijkstras/components/solution";
-import Edges from "@/app/dijkstras/components/edges";
+import Areas from "@/app/voronoi/components/areas";
 import GraphNodes from "@/app/dijkstras/components/graph";
 // import Measure from "@/app/dijkstras/descripcion/measure.client";
 
@@ -31,13 +30,6 @@ export default function Home() {
         <SideBarButtons graphType="RANDOM" />
       </div>
 
-      {/* <GraphList>
-        graph.map((node)=>())
-      </GraphList> */}
-      {/* <EdgesList>
-        edges.map((node)=>())
-      </EdgesList> */}
-
       <ConfigMenu graphType="RANDOM" />
 
       {/* render svg */}
@@ -45,8 +37,7 @@ export default function Home() {
         viewBox={"0 0 " + dims.w + " " + dims.h}
         className="inset-0 aspect-video w-full rounded-r-lg bg-zinc-800"
       >
-        <Edges />
-        <Solution />
+        <Areas />
         <GraphNodes />
       </svg>
     </div>

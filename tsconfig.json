@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/dijkstras/random-graph/page.jsx",
-    "app/dijkstras/descripcion/page.jsx"
-, "components/layout/navbar.jsx"  ],
+    "app/dijkstras/components/page.jsx"
+, "components/layout/navbar.jsx", "app/dijkstras/page.jsx", "app/opengraph-image.jsx"  ],
   "exclude": ["node_modules"]
 }
