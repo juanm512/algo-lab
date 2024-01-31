@@ -333,7 +333,7 @@ export default function Areas() {
       const color = Math.floor(Math.random() * 16777215).toString(16);
       return (
         <>
-          {areas[key].points.map((point, i) => (
+          {/* {areas[key].points.map((point, i) => (
             <circle
               key={i + "-point-area-" + key}
               cx={point.x}
@@ -341,7 +341,7 @@ export default function Areas() {
               r={1}
               fill={"#" + color}
             />
-          ))}
+          ))} */}
           <polyline
             key={key + "area"}
             points={areas[key].points.map(

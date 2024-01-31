@@ -4,6 +4,7 @@ import { Github } from "@/components/shared/icons";
 import { Briefcase } from "lucide-react";
 import DijkstrasDemo from "@/components/home/dijkstras-demo";
 import AstarDemo from "@/components/home/astar-demo";
+import VoronoiDemo from "@/components/home/voronoi-demo";
 import Image from "next/image";
 
 export default async function Home() {
@@ -80,7 +81,14 @@ const features = [
     linkTo: "/astar",
     description:
       "Built on [Next.js](https://nextjs.org/) primitives like `@next/font` and `next/image` for stellar performance.",
-    demo: <AstarDemo />,
+    // demo: <AstarDemo />,
+    demo: (
+      <div className="flex h-full w-full items-center justify-center ">
+        <h5 className="animate-pulse text-center text-xl font-semibold tracking-widest text-zinc-700 delay-1000 duration-500 ">
+          Very soon!
+        </h5>
+      </div>
+    ),
   },
   {
     title: "Travelling salesman problem",
@@ -88,14 +96,19 @@ const features = [
     description:
       "Finds the shortest possible route that visits each node exactly once and returns to the origin node.",
     demo: (
-      <Image
-        src="/tps.png"
-        alt="Deploy with Vercel"
-        width={120}
-        height={30}
-        unoptimized
-        className="h-full w-full"
-      />
+      // <Image
+      //   src="/tps.png"
+      //   alt="Deploy with Vercel"
+      //   width={120}
+      //   height={30}
+      //   unoptimized
+      //   className="h-full w-full"
+      // />
+      <div className="flex h-full w-full items-center justify-center ">
+        <h5 className="animate-pulse text-center text-xl font-semibold tracking-widest text-zinc-700 delay-1000 duration-500 ">
+          Working on it
+        </h5>
+      </div>
     ),
   },
   {
@@ -104,14 +117,19 @@ const features = [
     description:
       "Tthe optimal design of routes to be used by a fleet of vehicles to serve a set of customers. Generalization of the TSP,",
     demo: (
-      <Image
-        src="/vrpgs.svg"
-        alt="Deploy with Vercel"
-        width={120}
-        height={30}
-        unoptimized
-        className="h-full w-full"
-      />
+      // <Image
+      //   src="/vrpgs.svg"
+      //   alt="Deploy with Vercel"
+      //   width={120}
+      //   height={30}
+      //   unoptimized
+      //   className="h-full w-full"
+      // />
+      <div className="flex h-full w-full items-center justify-center ">
+        <h5 className="animate-pulse text-center text-xl font-semibold tracking-widest text-zinc-700 delay-1000 duration-500 ">
+          Working on it
+        </h5>
+      </div>
     ),
   },
   {
@@ -119,14 +137,6 @@ const features = [
     linkTo: "/",
     description:
       "Is a partition of a plane into regions close to each of a given set of objects.",
-    demo: (
-      <Image
-        src="/voronoi.png"
-        alt="Deploy with Vercel"
-        width={120}
-        height={30}
-        className="h-full w-full"
-      />
-    ),
+    demo: <VoronoiDemo />,
   },
 ];
