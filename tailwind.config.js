@@ -19,8 +19,14 @@ module.exports = {
         // Tooltip
         "slide-up-fade": "slide-up-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
         "slide-down-fade": "slide-down-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        dash: "dash 5s linear forwards",
       },
       keyframes: {
+        dash: {
+          to: {
+            strokeDashoffset: 0,
+          },
+        },
         // Fade up and down
         "fade-up": {
           "0%": {

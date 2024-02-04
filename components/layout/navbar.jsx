@@ -11,6 +11,10 @@ import { motion } from "framer-motion";
 
 const navItems = [
   {
+    path: "/graph-generator",
+    name: "Graph generator",
+  },
+  {
     path: "/dijkstras",
     name: "Dijkstra's",
   },
@@ -38,10 +42,15 @@ const subNavItems = {
     { path: "/grid-graph", name: "Grid graph" },
     { path: "/laberint-graph", name: "Laberint graph (DFS)" },
   ],
+  "/dijkstras": [
+    { path: "/random-graph", name: "Random graph solution" },
+    { path: "/grid-graph", name: "Grid graph solution" },
+    { path: "/laberint-graph", name: "Laberint graph solution" },
+  ],
   "/astar": [],
   "/tps": [],
   "/vrp": [],
-  "/voronoi": [{ path: "/random-graph", name: "Random graph" }],
+  "/voronoi": [{ path: "/random-graph", name: "Random graph solution" }],
 };
 
 export default function NavBar() {

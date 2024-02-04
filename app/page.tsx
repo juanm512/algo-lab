@@ -2,7 +2,7 @@ import Card from "@/components/home/card";
 import { DEPLOY_URL } from "@/lib/constants";
 import { Github } from "@/components/shared/icons";
 import { Briefcase } from "lucide-react";
-import DijkstrasDemo from "@/components/home/dijkstras-demo";
+import DijkstrasDemo from "@/components/dijkstras/demo/demo-general";
 import AstarDemo from "@/components/home/astar-demo";
 import VoronoiDemo from "@/components/home/voronoi-demo";
 import Image from "next/image";

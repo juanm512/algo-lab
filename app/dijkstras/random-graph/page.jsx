@@ -25,7 +25,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative mx-16 my-32 flex h-full max-h-[90vh] w-full max-w-[85vw] animate-fade-up flex-row rounded-lg border-2 border-zinc-500 shadow-md">
+    <div className="relative mx-16 my-32 flex h-full max-h-[90vh] w-full max-w-[85vw] rotate-90 animate-fade-up flex-row rounded-lg border-2 border-zinc-500 shadow-md md:rotate-0">
       {/* side bar */}
       <div className="flex min-h-full w-10 flex-col justify-between gap-2 rounded-l-md border-r border-zinc-700 bg-black/30 backdrop-blur-xl">
         <SideBarButtons graphType="RANDOM" />
